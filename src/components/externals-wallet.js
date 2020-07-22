@@ -24,20 +24,21 @@ class Externals extends Component {
     // the libraries loaded using the script tag in the file /src/html.js
     // are loaded in run-time
 
-    // the minified libraries are shown in the window object 
+    // the minified libraries are shown in the window object
 
     //this.bchTest()
   }
-  
+
   // Send bch
   async bchTest() {
    try {
-     
-    const mnemonic = ""
+
+    const mnemonic = "advice reform blade come stay siren finger love stairs large express sponsor"
     const bchjsOptions = {
       restURL: 'https://free-main.fullstack.cash/v3/'
     }
-    const bchWalletLib = new MinimalBCHWallet(mnemonic, bchjsOptions)
+    // const bchWalletLib = new MinimalBCHWallet(mnemonic, bchjsOptions)
+    const bchWalletLib = new window.SlpWallet(mnemonic, bchjsOptions)
 
     // Update bchjs instances  of minimal-slp-wallet libraries
     bchWalletLib.tokens.sendBch.bchjs = new bchWalletLib.BCHJS(bchjsOptions)
@@ -64,7 +65,7 @@ class Externals extends Component {
     )
 
     const result = await bchWalletLib.send(receivers)
-    console.log('result',result)  
+    console.log('result',result)
     _this.setState(prevState => {
       return {
         ...prevState,
